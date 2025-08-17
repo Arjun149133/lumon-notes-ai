@@ -6,7 +6,7 @@ This project is a web application that enables users to upload text-based transc
 
 ## 🔗 Deployed Version
 
-👉 [Live Demo on Vercel](https://lumon-notes-ai.vercel.app/)  
+👉 [Live Demo on Vercel](https://your-project-name.vercel.app)  
 _(Replace the URL above with your actual Vercel deployment)_
 
 ---
@@ -36,6 +36,56 @@ _(Replace the URL above with your actual Vercel deployment)_
 - **AI/LLM**: [GROQ](https://groq.com/)
 - **Email Sharing**: Gmail prefill link via `window.open`
 - **Deployment**: [Vercel](https://vercel.com/)
+- **Package Manager**: npm or bun
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### 2. Install Dependencies
+
+#### Using **npm**/**yarn** or similar:
+
+```bash
+npm install
+```
+
+#### Using **bun**:
+
+```bash
+bun install
+```
+
+### 3. Set Up Environment Variables
+
+Create a `.env.local` file in the root of the project and add any required environment variables such as your GROQ API key:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+### 4. Run the Development Server
+
+#### Using **npm**/**yarn** or similar:
+
+```bash
+npm run dev
+```
+
+#### Using **bun**:
+
+```bash
+bun run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
 
 ---
 
@@ -76,7 +126,7 @@ _(Replace the URL above with your actual Vercel deployment)_
 - **Subject**: Prefilled with a generic or user-defined title
 - **Body**: Prefilled with the final edited summary
 
-This leverages Gmail’s URL schema to open a new mail draft with all fields pre-filled.
+This uses Gmail’s URL schema to open a pre-filled draft email.
 
 ---
 
@@ -86,7 +136,7 @@ This leverages Gmail’s URL schema to open a new mail draft with all fields pre
 
   ```json
   {
-    "userText": "<raw-text>",
+    "transcript": "<raw-text>",
     "userPrompt": "<custom-instruction>"
   }
   ```
