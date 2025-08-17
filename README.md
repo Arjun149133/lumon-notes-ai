@@ -6,7 +6,7 @@ This project is a web application that enables users to upload text-based transc
 
 ## 🔗 Deployed Version
 
-👉 [Live Demo on Vercel](https://your-project-name.vercel.app)  
+👉 [Live Demo on Vercel](https://lumon-notes-ai.vercel.app/)  
 _(Replace the URL above with your actual Vercel deployment)_
 
 ---
@@ -45,7 +45,7 @@ _(Replace the URL above with your actual Vercel deployment)_
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/Arjun149133/lumon-notes-ai.git
 cd your-repo-name
 ```
 
