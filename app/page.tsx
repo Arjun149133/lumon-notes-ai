@@ -8,10 +8,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { FileText, Sparkles, Share } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
-import { Resend } from "resend";
 
 const Home = () => {
-  const resend = new Resend("re_TUtBURq2_2iJtAW1FcjqZKKfgsAVKaFL9");
   const [transcript, setTranscript] = useState<string | null>(null);
   const [filename, setFilename] = useState<string | null>(null);
   const [instruction, setInstruction] = useState("");

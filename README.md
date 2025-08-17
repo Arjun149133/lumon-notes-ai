@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 AI-Powered Transcript Summarizer
 
-## Getting Started
+This project is a web application that enables users to upload text-based transcripts (e.g., meeting notes, call transcripts), input custom prompts (e.g., "Summarize in bullet points for executives", "Extract only action items"), and receive an AI-generated, editable summary. Users can then share this summary directly via Gmail with just a few clicks.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔗 Deployed Version
+
+👉 [Live Demo on Vercel](https://lumon-notes-ai.vercel.app/)  
+_(Replace the URL above with your actual Vercel deployment)_
+
+---
+
+## 🚀 Features
+
+- **Transcript Upload**  
+  Upload `.txt` files containing transcripts or notes.
+
+- **Custom Instructions**  
+  Users can input their own prompt to guide the summary generation (e.g., tone, format, key focus).
+
+- **AI-Powered Summarization**  
+  Uses **GROQ LLM** to generate structured, context-aware summaries tailored to user prompts.
+
+- **Editable Output**  
+  Summaries are fully editable in the frontend before sharing.
+
+- **Email Integration**  
+  Users can send the final summary via Gmail by pre-filling the email using the Gmail compose link.
+
+---
+
+## 🧠 Tech Stack
+
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **AI/LLM**: [GROQ](https://groq.com/)
+- **Email Sharing**: Gmail prefill link via `window.open`
+- **Deployment**: [Vercel](https://vercel.com/)
+
+---
+
+## ⚙️ How It Works
+
+1. **Upload Transcript**  
+   Users upload a plain text transcript via the UI.
+
+2. **Input Prompt**  
+   A custom prompt is entered to specify how the summary should be generated.
+
+3. **Generate Summary**  
+   The app sends a request to the `/api/generate-summary` route with:
+
+   - The raw transcript
+   - The user’s custom prompt
+   - Additional system prompt to instruct the LLM
+
+4. **LLM Processing (GROQ)**  
+   The backend enriches the prompt and calls GROQ to generate the summary.
+
+5. **Display & Edit**  
+   The structured summary is displayed on the frontend. Users can edit the output inline.
+
+6. **Share via Gmail**  
+   After editing, users can share the summary by opening a prefilled Gmail compose window:
+
+   ```ts
+   const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subjectEncoded}&body=${bodyEncoded}`;
+   window.open(gmailLink, "_blank");
+   ```
+
+---
+
+## 📬 Email Sharing Flow
+
+- **To**: One or multiple recipients
+- **Subject**: Prefilled with a generic or user-defined title
+- **Body**: Prefilled with the final edited summary
+
+This leverages Gmail’s URL schema to open a new mail draft with all fields pre-filled.
+
+---
+
+## 🛠 API Route (`/api/generate-summary`)
+
+- Receives:
+
+  ```json
+  {
+    "userText": "<raw-text>",
+    "userPrompt": "<custom-instruction>"
+  }
+  ```
+
+- Constructs a combined prompt:
+
+  - Includes a system prompt that sets the tone/structure
+  - Appends user transcript and prompt
+
+- Calls GROQ LLM and sends the response back to the frontend.
+
+---
+
+## 📁 Project Structure (Simplified)
+
+```
+/pages
+  /api
+    generate-summary.js   // Handles summary generation via GROQ
+/components
+  UploadInput.js
+  PromptInput.js
+  SummaryEditor.js
+  EmailButton.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💡 Use Cases
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Executive summaries of meeting transcripts
+- Extracting action items from calls
+- Preparing client-ready briefs
+- Collaborative editing and sharing of notes
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✅ Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Support for PDF or DOCX upload
+- User authentication and summary history
+- Gmail API integration for direct sending (instead of link-based)
+- Summary versioning or export as PDF
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧑‍💻 Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ using Next.js and GROQ as part of a recruiter assignment project.

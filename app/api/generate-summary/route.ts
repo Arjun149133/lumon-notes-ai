@@ -17,16 +17,27 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const chatCompletion = await getGroqChatCompletion(userText, userPrompt);
+  try {
+    const chatCompletion = await getGroqChatCompletion(userText, userPrompt);
 
-  return NextResponse.json(
-    {
-      ai: chatCompletion.choices[0]?.message?.content || "not working",
-    },
-    {
-      status: 200,
-    }
-  );
+    return NextResponse.json(
+      {
+        ai: chatCompletion.choices[0]?.message?.content || "ai not responding",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "Failed to generate summary",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }
 
 async function getGroqChatCompletion(userText: string, userPrompt?: string) {
